@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
 import Filter from './components/Filter'
 import AddPerson from './components/AddPerson'
 import ShowPersons from './components/ShowPersons'
@@ -19,9 +18,22 @@ const App = () => {
     personService
       .getAll()
       .then(initialPersons => {
+        console.log('Initial Persons:', initialPersons); // Log the initialPersons array
+        setPersons(initialPersons);
+      })
+      .catch(error => {
+        console.error('Error fetching persons:', error); // Log any errors that occur during the request
+      });
+  }, []);
+  
+
+  /*useEffect(() => {
+    personService
+      .getAll()
+      .then(initialPersons => {
         setPersons(initialPersons)
       })
-  }, [])
+  }, [])*/
 
   const addName = (event) => {
     event.preventDefault()

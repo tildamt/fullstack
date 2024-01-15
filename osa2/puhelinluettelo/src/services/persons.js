@@ -1,16 +1,14 @@
 import axios from 'axios'
 const baseUrl = '/api/persons'
 
-const getAll = async () => {
+const getAll = () => {
     const request = axios.get(baseUrl)
-    const response = await request
-    return response.data
+    return request.then(response => response.data)
 }
 
-const create = async newObject => {
+const create = newObject => {
     const request = axios.post(baseUrl, newObject)
-    const response = await request
-    return response.data
+    return request.then(response => response.data)
 }
 
 const remove = async (id) => {
